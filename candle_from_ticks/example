@@ -1,0 +1,17 @@
+from candles_from_ticks import *
+
+
+if not mt5.initialize():
+    print("fail to connect MT5")
+    mt5.shutdown()
+
+_to = time.time()
+_from = _to - (60 * 60)
+
+
+ticks = mt5_get_tick('BTCUSD', _from, _to)
+
+cd = candle_from_tick(ticks, TF.s15)
+
+for i in cd:
+    print(i)
